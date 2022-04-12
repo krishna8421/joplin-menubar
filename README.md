@@ -6,4 +6,5 @@
 - [ ] Error Handling.
 - [ ] Fix the codes in the electron main file.
 - [ ] Add and show notes.
+- [ ] Icon color in Dark Theme.
 
