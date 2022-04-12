@@ -44,6 +44,15 @@ mb.on("ready", async () => {
   if(mb.app.dock) {
     mb.app.dock.hide();
   }
+  console.log("app is ready");
+  
+});
+
+mb.on("after-create-window", async () => {
+  console.log("after-create-window");
+  if(mb.app.dock) {
+    mb.app.dock.hide();
+  }
 });
 
 // app.on('ready', () => {

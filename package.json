@@ -53,12 +53,14 @@
     "asar": true,
     "mac": {
       "extendInfo": {
-        "LSUIElement": 1
+        "LSUIElement": 1,
+        "LSBackgroundOnly": 1,
+        "NSBGOnly": 1
       },
       "target": {
         "target": "dmg",
         "arch": [
-          "x64",
+
           "arm64"
         ]
       },
