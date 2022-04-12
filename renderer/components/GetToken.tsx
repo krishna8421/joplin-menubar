@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { useData } from "../hooks/useData";
 import { useState } from "react";
@@ -13,7 +12,7 @@ export default function GetToken() {
     <div className="flex flex-col justify-around w-screen h-screen relative">
       <RefreshButton />
       <div className="flex flex-col items-center">
-        <Image src="/icon.png" alt="Get Token" width={60} height={60} />
+        <img src="/static/icon.png" alt="Get Token" className="w-16 h-16" />
         <h2 className="text-2xl w-2/3 mt-4 text-center font-semibold font-mono text-slate-300 select-none">
           Welcome To Joplin MenuBar
         </h2>
