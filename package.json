@@ -1,0 +1,94 @@
+{
+  "name": "joplin-menubar",
+  "version": "1.0.0",
+  "description": "Joplin MenuBar",
+  "author": {
+    "name": "Krishna Kumar"
+  },
+  "private": true,
+  "main": "main/index.js",
+  "scripts": {
+    "clean": "rimraf release main renderer/out renderer/.next",
+    "lint": "eslint --fix \"**/*.+(ts|tsx)\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,json}\"",
+    "dev": "npm run build-electron && electron .",
+    "build-renderer": "next build renderer && next export renderer",
+    "build-electron": "tsc -p electron-src",
+    "build": "npm run build-renderer && npm run build-electron",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "electron-is-dev": "^2.0.0",
+    "electron-next": "^3.1.5",
+    "electron-store": "^8.0.1",
+    "menubar": "^9.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^18.0.1",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.4.4",
+    "cssnano": "^5.1.7",
+    "electron": "^18.0.3",
+    "electron-builder": "^23.0.3",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.4",
+    "eslint-config-prettier": "^8.5.0",
+    "next": "^12.1.4",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.6.3"
+  },
+  "build": {
+    "appId": "com.krishna.JoplinMenuBar",
+    "copyright": "Copyright © 2022 Krishna Kumar",
+    "productName": "Joplin MenuBar",
+    "asar": true,
+    "mac": {
+      "extendInfo": {
+        "LSUIElement": 1
+      },
+      "target": {
+        "target": "dmg",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      },
+      "icon": "assets/icon.icns"
+    },
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "linux": {
+      "icon": "assets/icon.ico",
+      "target": [
+        "deb",
+        "rpm",
+        "snap",
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "directories": {
+      "buildResources": "resources",
+      "output": "release"
+    },
+    "files": [
+      "main",
+      "renderer/out",
+      "assets/**/*"
+    ]
+  }
+}
