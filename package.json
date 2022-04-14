@@ -60,6 +60,7 @@
       "target": {
         "target": "dmg",
         "arch": [
+          "x64",
           "arm64"
         ]
       },
@@ -75,10 +76,7 @@
     "linux": {
       "icon": "assets/icon.ico",
       "target": [
-        "deb",
-        "rpm",
-        "snap",
-        "AppImage"
+        "deb"
       ],
       "category": "Development"
     },
