@@ -9,7 +9,7 @@ const IndexPage = () => {
   const { isJoplinRunning, token } = useData();
 
   const { activeMenu } = useData();
-  if (!isJoplinRunning || !token) {
+  if (!isJoplinRunning) {
     return (
       <Errors message="Joplin MenuBar requires Joplin to be running. Please start Joplin and Clipper service and refresh." />
     );
