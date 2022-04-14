@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react";
-import { MenuOptions } from "../interfaces";
+import { MenuOptions, Note } from "../interfaces";
 import axios from "axios";
 import { Simulate } from "react-dom/test-utils";
 import waiting = Simulate.waiting;
@@ -20,6 +20,9 @@ interface RootContext {
   getToken?: () => void;
   err?: string;
   setErr?: (err: any) => void;
+  allNotes?: Note[];
+  refreshNotes?: boolean;
+  setRefreshNotes?: (refreshNotes: boolean) => void;
 }
 export const RootContext = createContext<RootContext>({});
 
@@ -32,6 +35,9 @@ export const RootProvider = ({ children }) => {
   const [tempAuthToken, setTempAuthToken] = useState<string | null>(null);
   const [port, setPort] = useState<number | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [allNotes, setAllNotes] = useState<Note[]>([]);
+  const [refreshNotes, setRefreshNotes] = useState<boolean>(false);
+
 
   useEffect(() => {
     reCheckForJoplin();
@@ -96,6 +102,35 @@ export const RootProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Fetch All notes if Joplin is running and token is available
+   * TODO: Err handling
+   */
+  const getAllNotes = async () => {
+    if (isJoplinRunning && token) {
+      // const allNotes = []
+      // let pageNum = 1;
+      // let hasMore = false;
+      try {
+        // do{
+        //   const response = await axios.get(`http://localhost:${port}/notes?token=${token}&page=${pageNum}&limit=10`);
+        //   allNotes.push(...response.data.items);
+        //   hasMore = response.data.has_more;
+        // } while (hasMore)
+        const url = `http://localhost:${port}/notes?token=${token}`;
+        const response = await axios.get(url);
+        setAllNotes(response.data.items);
+      } catch (e) {
+        console.log(e.message);
+      }
+    }
+  };
+  
+  useEffect(()=>{
+       getAllNotes().then()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[refreshNotes])
+
   return (
     <RootContext.Provider
       value={{
@@ -114,6 +149,9 @@ export const RootProvider = ({ children }) => {
         getToken,
         err,
         setErr,
+        allNotes,
+        refreshNotes,
+        setRefreshNotes,
       }}
     >
       {children}

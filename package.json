@@ -60,7 +60,6 @@
       "target": {
         "target": "dmg",
         "arch": [
-
           "arm64"
         ]
       },

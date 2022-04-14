@@ -9,7 +9,6 @@ import { checkJoplinStatus } from "./utils/checkJoplinStatus";
 import { getAuthToken } from "./utils/getAuthToken";
 // @ts-ignore
 import Store from "electron-store";
-// import { app } from "electron";
 
 const url = isDev
   ? "http://localhost:8000/"
@@ -23,13 +22,9 @@ const mb = menubar({
   icon: join(__dirname, "../assets/JoplinMenuBarTemplate.png"),
   showDockIcon: false,
   browserWindow: {
-    width: isDev ? 700 : 320,
-    height: isDev ? 500 : 400,
+    width: isDev ? 800 : 320,
+    height: isDev ? 600 : 400,
     resizable: false,
-    // minWidth: isDev ? undefined : 320,
-    // minHeight: isDev ? undefined : 400,
-    // maxWidth: isDev ? undefined : 320,
-    // maxHeight: isDev ? undefined : 400,
     skipTaskbar: true,
     webPreferences: {
       nodeIntegration: false,
@@ -40,25 +35,18 @@ const mb = menubar({
 });
 
 mb.on("ready", async () => {
-  await prepareNext("./renderer")
-  if(mb.app.dock) {
+  await prepareNext("./renderer");
+  if (mb.app.dock) {
     mb.app.dock.hide();
   }
   console.log("app is ready");
-  
 });
 
 mb.on("after-create-window", async () => {
-  console.log("after-create-window");
-  if(mb.app.dock) {
+  if (mb.app.dock) {
     mb.app.dock.hide();
   }
 });
-
-// app.on('ready', () => {
-//   console.log(app.dock);
-//   if (app.dock) app.dock.hide();
-// });
 
 /**
  * Check if Joplin is Running or not.
