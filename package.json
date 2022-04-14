@@ -1,10 +1,14 @@
 {
   "name": "joplin-menubar",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Joplin MenuBar",
   "author": {
-    "name": "Krishna Kumar"
+    "name": "Krishna Kumar",
+    "email": "krishnakumarlal8421@gmail.com"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/krishna8421/joplin-menubar#readme",
+  "keywords": ["joplin", "menubar"],
   "private": true,
   "main": "main/index.js",
   "scripts": {
