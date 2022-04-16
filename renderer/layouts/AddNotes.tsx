@@ -23,7 +23,7 @@ export default function AddNotes() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
+      <div className="flex  flex-col gap-2">
         <label className="text-xs font-mono text-slate-300">Title</label>
         <input
           type="text"
@@ -43,8 +43,8 @@ export default function AddNotes() {
       </div>
       <button
         className="bg-zinc-800 text-slate-400 border border-slate-700 font-sans py-1 rounded-lg"
-        onClick={() => {
-          createNotes(title, content);
+        onClick={async () => {
+          await createNotes(title, content);
         }}
       >
         Add
