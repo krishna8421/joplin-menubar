@@ -38,7 +38,7 @@ export const RootProvider = ({ children }) => {
   const [allNotes, setAllNotes] = useState<Note[]>([]);
   const [refreshNotes, setRefreshNotes] = useState<boolean>(false);
 
-
+  
   useEffect(() => {
     reCheckForJoplin();
     global.ipcRenderer.send("getTokenFromLS", "");
@@ -129,7 +129,7 @@ export const RootProvider = ({ children }) => {
   useEffect(()=>{
        getAllNotes().then()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[refreshNotes])
+  },[refreshNotes,token])
 
   return (
     <RootContext.Provider
